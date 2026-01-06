@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>R15 v3 Black Edition</title>
+<!-- Favicon & App Icons -->
+<link rel="apple-touch-icon" sizes="180x180" href="assets/ico/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/ico/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/ico/favicon-16x16.png">
+<link rel="icon" href="assets/ico/favicon.ico">
+
+<!-- Android / PWA -->
+<link rel="manifest" href="assets/ico/site.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/ico/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/ico/android-chrome-512x512.png">
+<style>
+:root{
+  --bg:#050505;
+  --accent:#e10600;
+  --text:#f4f4f4;
+  --muted:#8a8a8a;
+  --glass:rgba(255,255,255,.06);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+html,body{
+  height:100%;
+}
+
+body{
+  background:radial-gradient(circle at top,#141414,#000);
+  color:var(--text);
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+  overflow:hidden;
+}
+
+/* ---------- LOADER ---------- */
+#loader{
+  position:fixed;
+  inset:0;
+  background:#000;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  z-index:10;
+}
+
+.loader-ring{
+  width:52px;height:52px;
+  border-radius:50%;
+  border:3px solid #222;
+  border-top:3px solid var(--accent);
+  animation:spin 1s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- PAGE LAYOUT ---------- */
+.page{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
+
+.content{
+  max-width:720px;
+  width:100%;
+  animation:fadeUp 1.2s ease forwards;
+}
+
+/* ---------- HEADER ---------- */
+h1{
+  font-size:clamp(2.2rem,5vw,3.2rem);
+  letter-spacing:2px;
+}
+h1 span{color:var(--accent)}
+
+.glow{
+  width:80px;height:3px;
+  margin:14px auto;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);
+  animation:glow 2s infinite;
+}
+
+@keyframes glow{
+  0%,100%{opacity:.3}
+  50%{opacity:1}
+}
+
+/* ---------- TEXT ---------- */
+p{
+  color:var(--muted);
+  line-height:1.6;
+  margin-top:14px;
+  font-size:clamp(.9rem,2.5vw,1rem);
+}
+
+.soon{
+  margin-top:22px;
+  letter-spacing:4px;
+  font-size:.85rem;
+  animation:pulse 1.8s infinite;
+}
+
+@keyframes pulse{
+  0%,100%{opacity:.4}
+  50%{opacity:1}
+}
+
+/* ---------- LINKS ---------- */
+.links-section{
+  margin-top:32px;
+}
+
+.links-title{
+  font-size:.85rem;
+  letter-spacing:1px;
+  color:#aaa;
+  min-height:1.2em;
+}
+
+.cursor{
+  display:inline-block;
+  width:1ch;
+  animation:blink 1s infinite;
+}
+
+@keyframes blink{
+  0%,50%{opacity:1}
+  51%,100%{opacity:0}
+}
+
+.links{
+  display:flex;
+  gap:18px;
+  margin-top:16px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.card{
+  background:var(--glass);
+  backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.08);
+  padding:16px 20px;
+  border-radius:16px;
+  min-width:220px;
+  transition:.35s ease;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+  border-color:var(--accent);
+}
+
+.card a{
+  text-decoration:none;
+  color:var(--text);
+  font-weight:600;
+  display:block;
+}
+
+.card span{
+  display:block;
+  margin-top:6px;
+  font-size:.8rem;
+  color:var(--muted);
+}
+
+/* ---------- FOOTER ---------- */
+footer{
+  position:absolute;
+  bottom:14px;
+  width:100%;
+  text-align:center;
+  font-size:.7rem;
+  color:#666;
+}
+
+/* ---------- ANIM ---------- */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:none}
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-ring"></div>
+  <p style="margin-top:12px;color:#777">Building R15 v3 Experience</p>
+</div>
+
+<!-- PAGE -->
+<div class="page">
+  <div class="content">
+
+    <h1>R15 V3 <span>BLACK EDITION</span></h1>
+    <div class="glow"></div>
+
+    <p>
+      A page dedicated to Yamaha R15 v3 Black Edition.
+    </p>
+
+    <div class="soon">COMING SOON</div>
+
+    <div class="links-section">
+      <div class="links-title" id="typing"></div>
+
+      <div class="links">
+        <div class="card">
+          <a href="https://sangeeth47.in" target="_blank">
+            Portfolio
+            <span>https://sangeeth47.in</span>
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="https://fuel.sangeeth47.in" target="_blank">
+            Fuel Tracker
+            <span>https://fuel.sangeeth47.in</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  © <span id="year"></span> • R15 v3 Project
+</footer>
+
+<script>
+/* Loader */
+window.addEventListener("load",()=>{
+  setTimeout(()=>{
+    const l=document.getElementById("loader");
+    l.style.opacity="0";
+    setTimeout(()=>l.remove(),400);
+  },900);
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+  
+  /* Typing animation */
+  const text = "Meanwhile, you can visit my other websites and projects";
+  const target = document.getElementById("typing");
+  let i = 0;
+
+  function type(){
+    if(i < text.length){
+      target.innerHTML =
+        text.slice(0, i + 1) + '<span class="cursor">|</span>';
+      i++;
+      setTimeout(type, 40);
+    } else {
+      target.innerHTML = text;
+    }
+  }
+
+  setTimeout(type, 600);
+});
+</script>
+
+</body>
+</html>
