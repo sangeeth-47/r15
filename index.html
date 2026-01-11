@@ -236,6 +236,7 @@ footer{
 </div>
 
 <footer>
+  <div id="visitor-counter">Visitors: <span id="visitCount">0</span></div>
   © <span id="year"></span> • R15 v3 Project
 </footer>
 
@@ -299,6 +300,61 @@ window.addEventListener("load",()=>{
 
 
   });
+
+// Visitor Counter
+(() => {
+  const counterEl = document.getElementById('visitCount');
+  if (!counterEl) return;
+
+  let isAnimating = false;
+
+  document.addEventListener('DOMContentLoaded', fetchVisitorCounter);
+
+  async function fetchVisitorCounter() {
+    try {
+      const res = await fetch(
+        'https://sangeeth2314105883websitecounter.azurewebsites.net/api/VisitorCounterR15',
+        { cache: 'no-store' }
+      );
+
+      if (!res.ok) throw new Error();
+
+      const data = await res.json();
+      const target = Number(data.totalVisits);
+
+      if (!Number.isFinite(target)) throw new Error();
+
+      animateCounter(counterEl, target, 1200);
+
+    } catch {
+      counterEl.textContent = 'N/A';
+    }
+  }
+
+  function animateCounter(el, target, duration) {
+    if (isAnimating) return;
+    isAnimating = true;
+
+    const start = performance.now();
+    el.textContent = '0';
+
+    function step(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      el.textContent = Math.floor(progress * target).toLocaleString();
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        el.textContent = target.toLocaleString();
+        isAnimating = false;
+      }
+    }
+
+    requestAnimationFrame(step);
+  }
+})();
+
+
 </script>
 
 </body>
