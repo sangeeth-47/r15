@@ -250,24 +250,55 @@ window.addEventListener("load",()=>{
 
   document.getElementById('year').textContent = new Date().getFullYear();
   
-  /* Typing animation */
-  const text = "Meanwhile, you can visit my other websites and projects";
-  const target = document.getElementById("typing");
-  let i = 0;
+  // Typing Effect
+  const texts = [
+  "Thanks for visiting my profile !",
+  "Meanwhile, you can visit my other websites and projects.",
+  "What’s coming next? Stay tuned!"
+  ];
 
-  function type(){
-    if(i < text.length){
-      target.innerHTML =
-        text.slice(0, i + 1) + '<span class="cursor">|</span>';
-      i++;
-      setTimeout(type, 40);
+  const target = document.getElementById("typing");
+
+  const typingSpeed = 40;
+  const erasingSpeed = 30;
+  const holdAfterType = 1500;
+  const holdAfterErase = 500;
+
+  let textIndex = 0;
+  let charIndex = 0;
+  let isTyping = true;
+
+  function animate() {
+    const currentText = texts[textIndex];
+
+    if (isTyping) {
+      if (charIndex < currentText.length) {
+        target.innerHTML =
+          currentText.slice(0, charIndex + 1) + '<span class="cursor">|</span>';
+        charIndex++;
+        setTimeout(animate, typingSpeed);
+      } else {
+        setTimeout(() => (isTyping = false), holdAfterType);
+        setTimeout(animate, holdAfterType);
+      }
     } else {
-      target.innerHTML = text;
+      if (charIndex > 0) {
+        target.innerHTML =
+          currentText.slice(0, charIndex - 1) + '<span class="cursor">|</span>';
+        charIndex--;
+        setTimeout(animate, erasingSpeed);
+      } else {
+        isTyping = true;
+        textIndex = (textIndex + 1) % texts.length;
+        setTimeout(animate, holdAfterErase);
+      }
     }
   }
 
-  setTimeout(type, 600);
-});
+  setTimeout(animate, 600);
+
+
+  });
 </script>
 
 </body>
